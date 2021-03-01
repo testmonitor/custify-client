@@ -168,4 +168,112 @@ class PeopleTest extends TestCase
         // When
         $custify->people();
     }
+
+    /** @test */
+    public function it_should_return_a_person()
+    {
+        // Given
+        $custify = new Client($this->token);
+
+        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
+
+        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getStatusCode')->andReturn(200);
+        $response->shouldReceive('getBody')->andReturn(json_encode($this->person));
+
+        $service->shouldReceive('request')->once()->andReturn($response);
+
+        // When
+        $person = $custify->person('12345');
+
+        // Then
+        $this->assertInstanceOf(Person::class, $person);
+        $this->assertEquals($this->person['id'], $person->id);
+    }
+
+    /** @test */
+    public function it_should_not_return_a_person_when_the_id_doesnt_exists()
+    {
+        // Given
+        $custify = new Client($this->token);
+
+        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
+
+        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getStatusCode')->andReturn(404);
+
+        $service->shouldReceive('request')->once()->andReturn($response);
+
+        $this->expectException(NotFoundException::class);
+
+        // When
+        $custify->person('12346');
+    }
+
+    /** @test */
+    public function it_should_return_a_person_when_using_a_user_id()
+    {
+        // Given
+        $custify = new Client($this->token);
+
+        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
+
+        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getStatusCode')->andReturn(200);
+        $response->shouldReceive('getBody')->andReturn(json_encode([['people' => [$this->person]]]));
+
+        $service->shouldReceive('request')->once()->andReturn($response);
+
+        // When
+        $person = $custify->personByUserId('12345');
+
+        // Then
+        $this->assertInstanceOf(Person::class, $person);
+        $this->assertEquals($this->person['id'], $person->id);
+    }
+
+    /** @test */
+    public function it_should_not_return_a_person_when_using_a_non_existing_user_id()
+    {
+        // Given
+        $custify = new Client($this->token);
+
+        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
+
+        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getStatusCode')->andReturn(200);
+        $response->shouldReceive('getBody')->andReturn(json_encode([['people' => []]]));
+
+        $service->shouldReceive('request')->once()->andReturn($response);
+
+        $this->expectException(NotFoundException::class);
+
+        // When
+        $custify->personByUserId('12346');
+    }
+
+    /** @test */
+    public function it_should_create_a_person()
+    {
+        // Given
+        $custify = new Client($this->token);
+
+        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
+
+        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getStatusCode')->andReturn(201);
+        $response->shouldReceive('getBody')->andReturn(json_encode($this->person));
+
+        $service->shouldReceive('request')->once()->andReturn($response);
+
+        // When
+        $person = $custify->createOrUpdatePerson(new Person([
+            'user_id' => $this->person['user_id'],
+            'email' => $this->person['email'],
+        ]));
+
+        // Then
+        $this->assertInstanceOf(Person::class, $person);
+        $this->assertEquals($this->person['id'], $person->id);
+    }
 }
