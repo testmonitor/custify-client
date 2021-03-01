@@ -5,25 +5,25 @@ namespace TestMonitor\Custify\Tests;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 use TestMonitor\Custify\Client;
-use TestMonitor\Custify\Resources\Person;
+use TestMonitor\Custify\Resources\Company;
 use TestMonitor\Custify\Exceptions\Exception;
 use TestMonitor\Custify\Exceptions\NotFoundException;
 use TestMonitor\Custify\Exceptions\ValidationException;
 use TestMonitor\Custify\Exceptions\FailedActionException;
 use TestMonitor\Custify\Exceptions\UnauthorizedException;
 
-class PeopleTest extends TestCase
+class CompaniesTest extends TestCase
 {
     protected $token;
 
-    protected $person;
+    protected $company;
 
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->token = '12345';
-        $this->person = ['id' => '1', 'user_id' => 'abcde', 'email' => 'email@server.com'];
+        $this->company = ['id' => '1', 'company_id' => 'abcde', 'name' => 'Company'];
     }
 
     public function tearDown(): void
@@ -32,7 +32,7 @@ class PeopleTest extends TestCase
     }
 
     /** @test */
-    public function it_should_return_a_list_of_people()
+    public function it_should_return_a_list_of_companies()
     {
         // Given
         $custify = new Client($this->token);
@@ -41,23 +41,23 @@ class PeopleTest extends TestCase
 
         $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
         $response->shouldReceive('getStatusCode')->andReturn(200);
-        $response->shouldReceive('getBody')->andReturn(json_encode([['people' => [$this->person]]]));
+        $response->shouldReceive('getBody')->andReturn(json_encode(['companies' => [$this->company]]));
 
         $service->shouldReceive('request')->once()->andReturn($response);
 
         // When
-        $people = $custify->people();
+        $companies = $custify->companies();
 
         // Then
-        $this->assertIsArray($people);
-        $this->assertCount(1, $people);
-        $this->assertInstanceOf(Person::class, $people[0]);
-        $this->assertEquals($this->person['id'], $people[0]->id);
-        $this->assertIsArray($people[0]->toArray());
+        $this->assertIsArray($companies);
+        $this->assertCount(1, $companies);
+        $this->assertInstanceOf(Company::class, $companies[0]);
+        $this->assertEquals($this->company['id'], $companies[0]->id);
+        $this->assertIsArray($companies[0]->toArray());
     }
 
     /** @test */
-    public function it_should_throw_an_failed_action_exception_when_client_receives_bad_request_while_getting_a_list_of_people()
+    public function it_should_throw_an_failed_action_exception_when_client_receives_bad_request_while_getting_a_list_of_companies()
     {
         // Given
         $custify = new Client($this->token);
@@ -71,11 +71,11 @@ class PeopleTest extends TestCase
         $this->expectException(FailedActionException::class);
 
         // When
-        $custify->people();
+        $custify->companies();
     }
 
     /** @test */
-    public function it_should_throw_a_notfound_exception_when_client_receives_not_found_while_getting_a_list_of_people()
+    public function it_should_throw_a_notfound_exception_when_client_receives_not_found_while_getting_a_list_of_companies()
     {
         // Given
         $custify = new Client($this->token);
@@ -89,11 +89,11 @@ class PeopleTest extends TestCase
         $this->expectException(NotFoundException::class);
 
         // When
-        $custify->people();
+        $custify->companies();
     }
 
     /** @test */
-    public function it_should_throw_a_unauthorized_exception_when_client_lacks_authorization_for_getting_a_list_of_people()
+    public function it_should_throw_a_unauthorized_exception_when_client_lacks_authorization_for_getting_a_list_of_companies()
     {
         // Given
         $custify = new Client($this->token);
@@ -107,11 +107,11 @@ class PeopleTest extends TestCase
         $this->expectException(UnauthorizedException::class);
 
         // When
-        $custify->people();
+        $custify->companies();
     }
 
     /** @test */
-    public function it_should_throw_a_validation_exception_when_client_provides_invalid_data_while_a_getting_list_of_people()
+    public function it_should_throw_a_validation_exception_when_client_provides_invalid_data_while_a_getting_list_of_companies()
     {
         // Given
         $custify = new Client($this->token);
@@ -125,11 +125,11 @@ class PeopleTest extends TestCase
         $this->expectException(ValidationException::class);
 
         // When
-        $custify->people();
+        $custify->companies();
     }
 
     /** @test */
-    public function it_should_return_an_error_message_when_client_provides_invalid_data_while_a_getting_list_of_people()
+    public function it_should_return_an_error_message_when_client_provides_invalid_data_while_a_getting_list_of_companies()
     {
         // Given
         $custify = new Client($this->token);
@@ -142,7 +142,7 @@ class PeopleTest extends TestCase
 
         // When
         try {
-            $custify->people();
+            $custify->companies();
         } catch (ValidationException $exception) {
 
             // Then
@@ -152,7 +152,7 @@ class PeopleTest extends TestCase
     }
 
     /** @test */
-    public function it_should_throw_a_generic_exception_when_client_suddenly_becomes_a_teapot_while_a_getting_list_of_people()
+    public function it_should_throw_a_generic_exception_when_client_suddenly_becomes_a_teapot_while_a_getting_list_of_companies()
     {
         // Given
         $custify = new Client($this->token);
@@ -166,6 +166,6 @@ class PeopleTest extends TestCase
         $this->expectException(Exception::class);
 
         // When
-        $custify->people();
+        $custify->companies();
     }
 }

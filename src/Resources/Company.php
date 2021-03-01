@@ -32,8 +32,8 @@ class Company extends Resource
      */
     public function __construct(array $attributes)
     {
-        $this->id = $attributes['id'];
-        $this->company_id = $attributes['company_id'];
-        $this->name = $attributes['name'];
+        $this->id = $attributes['id'] ?? '';
+        $this->company_id = $attributes['company_id'] ?? '';
+        $this->name = $attributes['name'] ?? '';
     }
 }

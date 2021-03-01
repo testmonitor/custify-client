@@ -4,6 +4,8 @@ namespace TestMonitor\Custify\Transforms;
 
 use TestMonitor\Custify\Validator;
 use TestMonitor\Custify\Resources\Person;
+use TestMonitor\Custify\Resources\Company;
+use TestMonitor\Custify\Resources\CustomAttributes;
 
 trait TransformsPeople
 {
@@ -30,12 +32,39 @@ trait TransformsPeople
      */
     protected function fromCustifyPerson($person): Person
     {
-        Validator::keysExists($person, ['id', 'user_id']);
+        Validator::keysExists($person, ['id', 'user_id', 'email']);
 
         return new Person([
             'id' => $person['id'],
             'user_id' => $person['user_id'],
             'email' => $person['email'],
+            'name' => $person['name'] ?? '',
+
+            'custom_attributes' => new CustomAttributes($person['custom_attributes'] ?? []),
+
+            'companies' => array_map(function ($company) {
+                return new Company(['id' => $company]);
+            }, $person['companies'] ?? []),
         ]);
+    }
+
+    /**
+     * @param Person $person
+     *
+     * @return array
+     */
+    protected function toCustifyPerson(Person $person): array
+    {
+        return [
+            'user_id' => $person->user_id,
+            'email' => $person->email,
+            'name' => $person->name,
+
+            'custom_attributes' => $person->customAttributes->toArray(),
+
+            'companies' => array_map(function (Company $company) {
+                return ['company_id' => $company->company_id];
+            }, $person->companies ?? []),
+        ];
     }
 }

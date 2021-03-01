@@ -11,7 +11,8 @@ use TestMonitor\Custify\Exceptions\UnauthorizedException;
 
 class Client
 {
-    use Actions\ManagesPeople;
+    use Actions\ManagesPeople,
+        Actions\ManagesCompanies;
 
     /**
      * @var string
