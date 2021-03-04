@@ -5,12 +5,6 @@ namespace TestMonitor\Custify\Tests;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 use TestMonitor\Custify\Client;
-use TestMonitor\Custify\Resources\Company;
-use TestMonitor\Custify\Exceptions\Exception;
-use TestMonitor\Custify\Exceptions\NotFoundException;
-use TestMonitor\Custify\Exceptions\ValidationException;
-use TestMonitor\Custify\Exceptions\FailedActionException;
-use TestMonitor\Custify\Exceptions\UnauthorizedException;
 use TestMonitor\Custify\Resources\Event;
 
 class EventTest extends TestCase

@@ -3,10 +3,6 @@
 namespace TestMonitor\Custify\Transforms;
 
 use TestMonitor\Custify\Resources\Event;
-use TestMonitor\Custify\Validator;
-use TestMonitor\Custify\Resources\Person;
-use TestMonitor\Custify\Resources\Company;
-use TestMonitor\Custify\Resources\CustomAttributes;
 
 trait TransformsEvents
 {

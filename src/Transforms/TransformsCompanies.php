@@ -2,9 +2,9 @@
 
 namespace TestMonitor\Custify\Transforms;
 
-use TestMonitor\Custify\Resources\CustomAttributes;
 use TestMonitor\Custify\Validator;
 use TestMonitor\Custify\Resources\Company;
+use TestMonitor\Custify\Resources\CustomAttributes;
 
 trait TransformsCompanies
 {

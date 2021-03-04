@@ -2,7 +2,6 @@
 
 namespace TestMonitor\Custify\Actions;
 
-use TestMonitor\Custify\Resources\CustomData;
 use TestMonitor\Custify\Validator;
 use TestMonitor\Custify\Resources\Person;
 use TestMonitor\Custify\Transforms\TransformsPeople;

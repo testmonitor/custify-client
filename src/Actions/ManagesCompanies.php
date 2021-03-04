@@ -2,8 +2,8 @@
 
 namespace TestMonitor\Custify\Actions;
 
-use TestMonitor\Custify\Resources\Person;
 use TestMonitor\Custify\Validator;
+use TestMonitor\Custify\Resources\Person;
 use TestMonitor\Custify\Resources\Company;
 use TestMonitor\Custify\Exceptions\NotFoundException;
 use TestMonitor\Custify\Transforms\TransformsCompanies;

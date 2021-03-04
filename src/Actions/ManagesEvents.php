@@ -2,13 +2,9 @@
 
 namespace TestMonitor\Custify\Actions;
 
-use TestMonitor\Custify\Resources\CustomData;
 use TestMonitor\Custify\Resources\Event;
-use TestMonitor\Custify\Transforms\TransformsEvents;
-use TestMonitor\Custify\Validator;
 use TestMonitor\Custify\Resources\Person;
-use TestMonitor\Custify\Transforms\TransformsPeople;
-use TestMonitor\Custify\Exceptions\NotFoundException;
+use TestMonitor\Custify\Transforms\TransformsEvents;
 
 trait ManagesEvents
 {
