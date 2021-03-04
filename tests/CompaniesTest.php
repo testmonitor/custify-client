@@ -11,7 +11,6 @@ use TestMonitor\Custify\Exceptions\NotFoundException;
 use TestMonitor\Custify\Exceptions\ValidationException;
 use TestMonitor\Custify\Exceptions\FailedActionException;
 use TestMonitor\Custify\Exceptions\UnauthorizedException;
-use TestMonitor\Custify\Resources\Person;
 
 class CompaniesTest extends TestCase
 {
