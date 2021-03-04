@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 use TestMonitor\Custify\Client;
 use TestMonitor\Custify\Resources\Event;
 
-class EventTest extends TestCase
+class EventsTest extends TestCase
 {
     protected $token;
 
@@ -45,7 +45,7 @@ class EventTest extends TestCase
 
         // When
         $response = $custify->createEvent(new Event([
-            'user_id' => $this->person->user_id,
+            'user_id' => $this->person['user_id'],
             'name' => 'Event',
         ]));
 
@@ -68,7 +68,7 @@ class EventTest extends TestCase
 
         // When
         $response = $custify->createEvent(new Event([
-            'company_id' => $this->person->company_id,
+            'company_id' => $this->company['company_id'],
             'name' => 'Event',
         ]));
 

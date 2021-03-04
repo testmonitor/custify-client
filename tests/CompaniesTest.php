@@ -11,6 +11,7 @@ use TestMonitor\Custify\Exceptions\NotFoundException;
 use TestMonitor\Custify\Exceptions\ValidationException;
 use TestMonitor\Custify\Exceptions\FailedActionException;
 use TestMonitor\Custify\Exceptions\UnauthorizedException;
+use TestMonitor\Custify\Resources\Person;
 
 class CompaniesTest extends TestCase
 {
@@ -167,5 +168,47 @@ class CompaniesTest extends TestCase
 
         // When
         $custify->companies();
+    }
+
+    /** @test */
+    public function it_should_return_a_company_when_using_a_company_id()
+    {
+        // Given
+        $custify = new Client($this->token);
+
+        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
+
+        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getStatusCode')->andReturn(200);
+        $response->shouldReceive('getBody')->andReturn(json_encode(['companies' => [$this->company]]));
+
+        $service->shouldReceive('request')->once()->andReturn($response);
+
+        // When
+        $company = $custify->companyByCompanyId('12345');
+
+        // Then
+        $this->assertInstanceOf(Company::class, $company);
+        $this->assertEquals($this->company['id'], $company->id);
+    }
+
+    /** @test */
+    public function it_should_not_return_a_company_when_using_a_non_existing_company_id()
+    {
+        // Given
+        $custify = new Client($this->token);
+
+        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
+
+        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getStatusCode')->andReturn(200);
+        $response->shouldReceive('getBody')->andReturn(json_encode(['companies' => []]));
+
+        $service->shouldReceive('request')->once()->andReturn($response);
+
+        $this->expectException(NotFoundException::class);
+
+        // When
+        $custify->companyByCompanyId('12346');
     }
 }
