@@ -201,7 +201,6 @@ class Client
             throw new FailedActionException((string) $response->getBody());
         }
 
-
         throw new Exception((string) $response->getStatusCode());
     }
 }
