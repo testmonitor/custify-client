@@ -12,3 +12,4 @@ phpunit.xml
 /.idea
 
 /src/Test.php
+test.php

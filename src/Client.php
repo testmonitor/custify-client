@@ -12,7 +12,8 @@ use TestMonitor\Custify\Exceptions\UnauthorizedException;
 class Client
 {
     use Actions\ManagesPeople,
-        Actions\ManagesCompanies;
+        Actions\ManagesCompanies,
+        Actions\ManagesEvents;
 
     /**
      * @var string
@@ -107,6 +108,24 @@ class Client
     }
 
     /**
+     * Make a DELETE request to Custify servers and return the response.
+     *
+     * @param string $uri
+     * @param array $payload
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \TestMonitor\Custify\Exceptions\FailedActionException
+     * @throws \TestMonitor\Custify\Exceptions\NotFoundException
+     * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
+     * @throws \TestMonitor\Custify\Exceptions\ValidationException
+     * @return mixed
+     */
+    protected function delete($uri, array $payload = [])
+    {
+        return $this->request('DELETE', $uri, $payload);
+    }
+
+    /**
      * Make a PUT request to Forge servers and return the response.
      *
      * @param string $uri
@@ -146,7 +165,7 @@ class Client
             $payload
         );
 
-        if (! in_array($response->getStatusCode(), [200, 201, 203, 204, 206])) {
+        if (! in_array($response->getStatusCode(), [200, 201, 202, 203, 204, 206])) {
             return $this->handleRequestError($response);
         }
 
@@ -181,6 +200,7 @@ class Client
         if ($response->getStatusCode() == 400) {
             throw new FailedActionException((string) $response->getBody());
         }
+
 
         throw new Exception((string) $response->getStatusCode());
     }

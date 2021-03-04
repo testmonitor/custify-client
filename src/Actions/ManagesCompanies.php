@@ -2,6 +2,7 @@
 
 namespace TestMonitor\Custify\Actions;
 
+use TestMonitor\Custify\Resources\Person;
 use TestMonitor\Custify\Validator;
 use TestMonitor\Custify\Resources\Company;
 use TestMonitor\Custify\Exceptions\NotFoundException;
@@ -88,5 +89,18 @@ trait ManagesCompanies
         $response = $this->post('company', ['json' => $this->toCustifyCompany($company)]);
 
         return $this->fromCustifyCompany($response);
+    }
+
+    /**
+     * Delete a person.
+     *
+     * @param \TestMonitor\Custify\Resources\Company $company
+     *
+     * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
+     * @return \TestMonitor\Custify\Resources\Person
+     */
+    public function deleteCompany(Company $company)
+    {
+        return $this->delete("company/{$company->id}");
     }
 }
