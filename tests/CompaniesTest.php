@@ -191,7 +191,6 @@ class CompaniesTest extends TestCase
         $this->assertEquals($this->company['id'], $company->id);
     }
 
-
     /** @test */
     public function it_should_return_a_company_when_using_a_company_id()
     {
