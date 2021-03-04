@@ -4,6 +4,7 @@ namespace TestMonitor\Custify\Transforms;
 
 use TestMonitor\Custify\Validator;
 use TestMonitor\Custify\Resources\Company;
+use TestMonitor\Custify\Resources\CustomAttributes;
 
 trait TransformsCompanies
 {
@@ -36,6 +37,8 @@ trait TransformsCompanies
             'id' => $company['id'],
             'company_id' => $company['company_id'],
             'name' => $company['name'],
+
+            'custom_attributes' => new CustomAttributes($company['custom_attributes'] ?? []),
         ]);
     }
 
@@ -49,6 +52,8 @@ trait TransformsCompanies
         return [
             'company_id' => $company->company_id,
             'name' => $company->name,
+
+            'custom_attributes' => $company->customAttributes->toArray(),
         ];
     }
 }

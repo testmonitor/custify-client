@@ -26,6 +26,13 @@ class Company extends Resource
     public $name;
 
     /**
+     * The custom attributes for this person.
+     *
+     * @var \TestMonitor\Custify\Resources\CustomAttributes
+     */
+    public $customAttributes;
+
+    /**
      * Create a new resource instance.
      *
      * @param array $attributes
@@ -35,5 +42,7 @@ class Company extends Resource
         $this->id = $attributes['id'] ?? '';
         $this->company_id = $attributes['company_id'] ?? '';
         $this->name = $attributes['name'] ?? '';
+
+        $this->customAttributes = $attributes['custom_attributes'] ?? new CustomAttributes();
     }
 }

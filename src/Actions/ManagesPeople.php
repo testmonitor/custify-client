@@ -104,4 +104,17 @@ trait ManagesPeople
 
         return $this->fromCustifyPerson($response);
     }
+
+    /**
+     * Delete a person.
+     *
+     * @param \TestMonitor\Custify\Resources\Person $person
+     *
+     * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
+     * @return \TestMonitor\Custify\Resources\Person
+     */
+    public function deletePerson(Person $person): Person
+    {
+        return $this->delete("people/{$person->id}");
+    }
 }

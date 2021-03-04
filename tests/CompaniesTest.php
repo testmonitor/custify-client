@@ -168,4 +168,93 @@ class CompaniesTest extends TestCase
         // When
         $custify->companies();
     }
+
+    /** @test */
+    public function it_should_return_a_company_when_using_an_id()
+    {
+        // Given
+        $custify = new Client($this->token);
+
+        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
+
+        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getStatusCode')->andReturn(200);
+        $response->shouldReceive('getBody')->andReturn(json_encode(['companies' => [$this->company]]));
+
+        $service->shouldReceive('request')->once()->andReturn($response);
+
+        // When
+        $company = $custify->company('1');
+
+        // Then
+        $this->assertInstanceOf(Company::class, $company);
+        $this->assertEquals($this->company['id'], $company->id);
+    }
+
+    /** @test */
+    public function it_should_return_a_company_when_using_a_company_id()
+    {
+        // Given
+        $custify = new Client($this->token);
+
+        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
+
+        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getStatusCode')->andReturn(200);
+        $response->shouldReceive('getBody')->andReturn(json_encode(['companies' => [$this->company]]));
+
+        $service->shouldReceive('request')->once()->andReturn($response);
+
+        // When
+        $company = $custify->companyByCompanyId('12345');
+
+        // Then
+        $this->assertInstanceOf(Company::class, $company);
+        $this->assertEquals($this->company['id'], $company->id);
+    }
+
+    /** @test */
+    public function it_should_not_return_a_company_when_using_a_non_existing_company_id()
+    {
+        // Given
+        $custify = new Client($this->token);
+
+        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
+
+        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getStatusCode')->andReturn(200);
+        $response->shouldReceive('getBody')->andReturn(json_encode(['companies' => []]));
+
+        $service->shouldReceive('request')->once()->andReturn($response);
+
+        $this->expectException(NotFoundException::class);
+
+        // When
+        $custify->companyByCompanyId('12346');
+    }
+
+    /** @test */
+    public function it_should_create_a_company()
+    {
+        // Given
+        $custify = new Client($this->token);
+
+        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
+
+        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getStatusCode')->andReturn(201);
+        $response->shouldReceive('getBody')->andReturn(json_encode($this->company));
+
+        $service->shouldReceive('request')->once()->andReturn($response);
+
+        // When
+        $company = $custify->createOrUpdateCompany(new Company([
+            'user_id' => $this->company['company_id'],
+            'name' => $this->company['name'],
+        ]));
+
+        // Then
+        $this->assertInstanceOf(Company::class, $company);
+        $this->assertEquals($this->company['id'], $company->id);
+    }
 }
