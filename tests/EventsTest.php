@@ -94,11 +94,11 @@ class EventsTest extends TestCase
         $service->shouldReceive('request')->once()->andReturn($response);
 
         // When
-        $response = $custify->event("Person created", new Person($this->person));
+        $response = $custify->event('Person created', new Person($this->person));
 
         // Then
         $this->assertInstanceOf(Event::class, $response);
-        $this->assertEquals("Person created", $response->name);
+        $this->assertEquals('Person created', $response->name);
     }
 
     /** @test */
@@ -116,11 +116,11 @@ class EventsTest extends TestCase
         $service->shouldReceive('request')->once()->andReturn($response);
 
         // When
-        $response = $custify->event("Company created", new Company($this->company));
+        $response = $custify->event('Company created', new Company($this->company));
 
         // Then
         $this->assertInstanceOf(Event::class, $response);
-        $this->assertEquals("Company created", $response->name);
+        $this->assertEquals('Company created', $response->name);
     }
 
     /** @test */
@@ -139,15 +139,15 @@ class EventsTest extends TestCase
 
         // When
         $response = $custify->event(
-            "Company created",
+            'Company created',
             new Company($this->company),
             ['hello' => 'World']
         );
 
         // Then
         $this->assertInstanceOf(Event::class, $response);
-        $this->assertEquals("Company created", $response->name);
-        $this->assertObjectHasAttribute("hello", $response->metadata);
-        $this->assertEquals("World", $response->metadata->hello);
+        $this->assertEquals('Company created', $response->name);
+        $this->assertObjectHasAttribute('hello', $response->metadata);
+        $this->assertEquals('World', $response->metadata->hello);
     }
 }
