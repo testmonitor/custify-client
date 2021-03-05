@@ -7,6 +7,7 @@ use PHPUnit\Framework\TestCase;
 use TestMonitor\Custify\Client;
 use TestMonitor\Custify\Resources\Company;
 use TestMonitor\Custify\Exceptions\Exception;
+use TestMonitor\Custify\Resources\CustomAttributes;
 use TestMonitor\Custify\Exceptions\NotFoundException;
 use TestMonitor\Custify\Exceptions\ValidationException;
 use TestMonitor\Custify\Exceptions\FailedActionException;
@@ -256,5 +257,66 @@ class CompaniesTest extends TestCase
         // Then
         $this->assertInstanceOf(Company::class, $company);
         $this->assertEquals($this->company['id'], $company->id);
+    }
+
+    /** @test */
+    public function it_should_update_custom_atributes_for_a_company()
+    {
+        // Given
+        $custify = new Client($this->token);
+
+        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
+
+        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getStatusCode')->andReturn(201);
+        $response->shouldReceive('getBody')->andReturn(json_encode(array_merge(
+            $this->company,
+            ['custom_attributes' => ['krusty' => 'krab']]
+        )));
+
+        $service->shouldReceive('request')->once()->andReturn($response);
+
+        $company = new Company([
+            'user_id' => $this->company['company_id'],
+            'name' => $this->company['name'],
+        ]);
+
+        // When
+        $company->customAttributes = new CustomAttributes(['krusty' =>'krab']);
+
+        $response = $custify->createOrUpdateCompany($company);
+
+        // Then
+        $this->assertInstanceOf(Company::class, $response);
+        $this->assertEquals('krab', $response->customAttributes->krusty);
+    }
+
+    /** @test */
+    public function it_should_delete_a_company()
+    {
+        // Given
+        $custify = new Client($this->token);
+
+        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
+
+        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getStatusCode')->andReturn(201);
+        $response->shouldReceive('getBody')->andReturn(json_encode([
+            'deleted' => 1,
+        ]));
+
+        $service->shouldReceive('request')->once()->andReturn($response);
+
+        $company = new Company([
+            'user_id' => $this->company['company_id'],
+            'name' => $this->company['name'],
+        ]);
+
+        // When
+        $response = $custify->deleteCompany($company);
+
+        // Then
+        $this->assertIsBool($response, $response);
+        $this->assertTrue($response);
     }
 }

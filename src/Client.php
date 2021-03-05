@@ -126,24 +126,6 @@ class Client
     }
 
     /**
-     * Make a PUT request to Forge servers and return the response.
-     *
-     * @param string $uri
-     * @param array $payload
-     *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \TestMonitor\Custify\Exceptions\FailedActionException
-     * @throws \TestMonitor\Custify\Exceptions\NotFoundException
-     * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
-     * @throws \TestMonitor\Custify\Exceptions\ValidationException
-     * @return mixed
-     */
-    protected function patch($uri, array $payload = [])
-    {
-        return $this->request('PATCH', $uri, $payload);
-    }
-
-    /**
      * Make request to Custify servers and return the response.
      *
      * @param string $verb

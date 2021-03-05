@@ -111,10 +111,12 @@ trait ManagesPeople
      * @param \TestMonitor\Custify\Resources\Person $person
      *
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
-     * @return \TestMonitor\Custify\Resources\Person
+     * @return bool
      */
-    public function deletePerson(Person $person): Person
+    public function deletePerson(Person $person)
     {
-        return $this->delete("people/{$person->id}");
+        $response = $this->delete("people/{$person->id}");
+
+        return is_array($response) && array_key_exists('deleted', $response) && $response['deleted'] === 1;
     }
 }
