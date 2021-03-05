@@ -5,9 +5,9 @@ namespace TestMonitor\Custify\Tests;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 use TestMonitor\Custify\Client;
-use TestMonitor\Custify\Resources\Company;
 use TestMonitor\Custify\Resources\Event;
 use TestMonitor\Custify\Resources\Person;
+use TestMonitor\Custify\Resources\Company;
 
 class EventsTest extends TestCase
 {
