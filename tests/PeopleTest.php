@@ -253,6 +253,48 @@ class PeopleTest extends TestCase
     }
 
     /** @test */
+    public function it_should_return_a_person_when_using_a_email()
+    {
+        // Given
+        $custify = new Client($this->token);
+
+        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
+
+        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getStatusCode')->andReturn(200);
+        $response->shouldReceive('getBody')->andReturn(json_encode([['people' => [$this->person]]]));
+
+        $service->shouldReceive('request')->once()->andReturn($response);
+
+        // When
+        $person = $custify->personByEmail('email@server.com');
+
+        // Then
+        $this->assertInstanceOf(Person::class, $person);
+        $this->assertEquals($this->person['email'], $person->email);
+    }
+
+    /** @test */
+    public function it_should_not_return_a_person_when_using_a_non_existing_email()
+    {
+        // Given
+        $custify = new Client($this->token);
+
+        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
+
+        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getStatusCode')->andReturn(200);
+        $response->shouldReceive('getBody')->andReturn(json_encode([['people' => []]]));
+
+        $service->shouldReceive('request')->once()->andReturn($response);
+
+        $this->expectException(NotFoundException::class);
+
+        // When
+        $custify->personByEmail('nonexisted@email.com');
+    }
+
+    /** @test */
     public function it_should_create_a_person()
     {
         // Given
