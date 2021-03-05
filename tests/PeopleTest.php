@@ -376,7 +376,7 @@ class PeopleTest extends TestCase
         $response = $custify->deletePerson($person);
 
         // Then
-        $this->assertIsBool($response, $response);
+        $this->assertIsBool($response);
         $this->assertTrue($response);
     }
 }

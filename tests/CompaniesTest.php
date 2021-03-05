@@ -335,7 +335,7 @@ class CompaniesTest extends TestCase
         $response = $custify->deleteCompany($company);
 
         // Then
-        $this->assertIsBool($response, $response);
+        $this->assertIsBool($response);
         $this->assertTrue($response);
     }
 }
