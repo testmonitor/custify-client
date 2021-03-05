@@ -51,7 +51,7 @@ class Event extends Resource
     public function __construct(array $attributes)
     {
         $this->name = $attributes['name'] ?? '';
-        $this->created_at = $attributes['created_at'] ?? (new \DateTime());
+        $this->created_at = $attributes['created_at'] ?? (new \DateTime())->format('Y-m-d h:i:s');
 
         $this->deduplication_id = $attributes['deduplication_id'] ?? '';
 

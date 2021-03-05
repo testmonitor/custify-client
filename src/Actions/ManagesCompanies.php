@@ -97,10 +97,12 @@ trait ManagesCompanies
      * @param \TestMonitor\Custify\Resources\Company $company
      *
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
-     * @return \TestMonitor\Custify\Resources\Person
+     * @return boolean
      */
     public function deleteCompany(Company $company)
     {
-        return $this->delete("company/{$company->id}");
+        $response = $this->delete("company/{$company->id}");
+
+        return is_array($response) && array_key_exists('deleted', $response) && $response['deleted'] === 1;
     }
 }

@@ -276,4 +276,33 @@ class PeopleTest extends TestCase
         $this->assertInstanceOf(Person::class, $person);
         $this->assertEquals($this->person['id'], $person->id);
     }
+
+    /** @test */
+    public function it_should_delete_a_person()
+    {
+        // Given
+        $custify = new Client($this->token);
+
+        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
+
+        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getStatusCode')->andReturn(201);
+        $response->shouldReceive('getBody')->andReturn(json_encode([
+            'deleted' => 1,
+        ]));
+
+        $service->shouldReceive('request')->once()->andReturn($response);
+
+        $person = new Person([
+            'user_id' => $this->person['user_id'],
+            'email' => $this->person['email'],
+        ]);
+
+        // When
+        $response = $custify->deletePerson($person);
+
+        // Then
+        $this->assertIsBool($response, $response);
+        $this->assertTrue($response);
+    }
 }

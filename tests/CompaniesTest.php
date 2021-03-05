@@ -257,4 +257,33 @@ class CompaniesTest extends TestCase
         $this->assertInstanceOf(Company::class, $company);
         $this->assertEquals($this->company['id'], $company->id);
     }
+
+    /** @test */
+    public function it_should_delete_a_company()
+    {
+        // Given
+        $custify = new Client($this->token);
+
+        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
+
+        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getStatusCode')->andReturn(201);
+        $response->shouldReceive('getBody')->andReturn(json_encode([
+            'deleted' => 1,
+        ]));
+
+        $service->shouldReceive('request')->once()->andReturn($response);
+
+        $company = new Company([
+            'user_id' => $this->company['company_id'],
+            'name' => $this->company['name'],
+        ]);
+
+        // When
+        $response = $custify->deleteCompany($company);
+
+        // Then
+        $this->assertIsBool($response, $response);
+        $this->assertTrue($response);
+    }
 }
