@@ -193,6 +193,25 @@ class CompaniesTest extends TestCase
     }
 
     /** @test */
+    public function it_should_not_return_a_company_when_the_id_doesnt_exists()
+    {
+        // Given
+        $custify = new Client($this->token);
+
+        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
+
+        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getStatusCode')->andReturn(404);
+
+        $service->shouldReceive('request')->once()->andReturn($response);
+
+        $this->expectException(NotFoundException::class);
+
+        // When
+        $custify->company('12346');
+    }
+
+    /** @test */
     public function it_should_return_a_company_when_using_a_company_id()
     {
         // Given
@@ -316,7 +335,7 @@ class CompaniesTest extends TestCase
         $response = $custify->deleteCompany($company);
 
         // Then
-        $this->assertIsBool($response, $response);
+        $this->assertIsBool($response);
         $this->assertTrue($response);
     }
 }
