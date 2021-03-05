@@ -111,7 +111,7 @@ trait ManagesPeople
      * @param \TestMonitor\Custify\Resources\Person $person
      *
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
-     * @return boolean
+     * @return bool
      */
     public function deletePerson(Person $person)
     {

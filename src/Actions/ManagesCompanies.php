@@ -97,7 +97,7 @@ trait ManagesCompanies
      * @param \TestMonitor\Custify\Resources\Company $company
      *
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
-     * @return boolean
+     * @return bool
      */
     public function deleteCompany(Company $company)
     {

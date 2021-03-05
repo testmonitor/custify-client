@@ -79,7 +79,6 @@ class EventsTest extends TestCase
         $this->assertInstanceOf(Event::class, $response);
     }
 
-
     /** @test */
     public function it_should_trigger_an_event_for_a_person()
     {
