@@ -3,9 +3,6 @@
 namespace TestMonitor\Custify\Actions;
 
 use TestMonitor\Custify\Resources\Event;
-use TestMonitor\Custify\Resources\Person;
-use TestMonitor\Custify\Resources\Company;
-use TestMonitor\Custify\Resources\Resource;
 use TestMonitor\Custify\Transforms\TransformsEvents;
 
 trait ManagesEvents
