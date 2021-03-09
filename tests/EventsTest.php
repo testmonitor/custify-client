@@ -46,13 +46,13 @@ class EventsTest extends TestCase
         $service->shouldReceive('request')->once()->andReturn($response);
 
         // When
-        $response = $custify->createEvent(new Event([
-            'user_id' => $this->person['user_id'],
+        $response = $custify->insertEvent(new Event([
             'name' => 'Event',
+            'person' => new Person($this->person),
         ]));
 
         // Then
-        $this->assertInstanceOf(Event::class, $response);
+        $this->assertTrue($response);
     }
 
     /** @test */
@@ -70,84 +70,12 @@ class EventsTest extends TestCase
         $service->shouldReceive('request')->once()->andReturn($response);
 
         // When
-        $response = $custify->createEvent(new Event([
-            'company_id' => $this->company['company_id'],
+        $response = $custify->insertEvent(new Event([
             'name' => 'Event',
+            'company' => new Company($this->company),
         ]));
 
         // Then
-        $this->assertInstanceOf(Event::class, $response);
-    }
-
-    /** @test */
-    public function it_should_trigger_an_event_for_a_person()
-    {
-        // Given
-        $custify = new Client($this->token);
-
-        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
-
-        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
-        $response->shouldReceive('getStatusCode')->andReturn(202);
-        $response->shouldReceive('getBody')->andReturn(json_encode([]));
-
-        $service->shouldReceive('request')->once()->andReturn($response);
-
-        // When
-        $response = $custify->event('Person created', new Person($this->person));
-
-        // Then
-        $this->assertInstanceOf(Event::class, $response);
-        $this->assertEquals('Person created', $response->name);
-    }
-
-    /** @test */
-    public function it_should_trigger_an_event_for_a_company()
-    {
-        // Given
-        $custify = new Client($this->token);
-
-        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
-
-        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
-        $response->shouldReceive('getStatusCode')->andReturn(202);
-        $response->shouldReceive('getBody')->andReturn(json_encode([]));
-
-        $service->shouldReceive('request')->once()->andReturn($response);
-
-        // When
-        $response = $custify->event('Company created', new Company($this->company));
-
-        // Then
-        $this->assertInstanceOf(Event::class, $response);
-        $this->assertEquals('Company created', $response->name);
-    }
-
-    /** @test */
-    public function it_should_trigger_an_event_and_include_metadata()
-    {
-        // Given
-        $custify = new Client($this->token);
-
-        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
-
-        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
-        $response->shouldReceive('getStatusCode')->andReturn(202);
-        $response->shouldReceive('getBody')->andReturn(json_encode([]));
-
-        $service->shouldReceive('request')->once()->andReturn($response);
-
-        // When
-        $response = $custify->event(
-            'Company created',
-            new Company($this->company),
-            ['hello' => 'World']
-        );
-
-        // Then
-        $this->assertInstanceOf(Event::class, $response);
-        $this->assertEquals('Company created', $response->name);
-        $this->assertObjectHasAttribute('hello', $response->metadata);
-        $this->assertEquals('World', $response->metadata->hello);
+        $this->assertTrue($response);
     }
 }

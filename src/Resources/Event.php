@@ -12,34 +12,37 @@ class Event extends Resource
     public $name;
 
     /**
-     * The time the event occurred in your application..
+     * The time the event occurred in your application.
      *
      * @var string
      */
     public $created_at;
 
     /**
-     * @var string
+     * The person for which the event occurs.
+     *
+     * @var \TestMonitor\Custify\Resources\Person|null
      */
-    public $user_id;
+    public $person;
 
     /**
-     * @var string
+     * The company for which the event occurs.
+     *
+     * @var \TestMonitor\Custify\Resources\Company|null
      */
-    public $email;
+    public $company;
 
     /**
-     * @var string
-     */
-    public $company_id;
-
-    /**
+     * If present, subsequent events with the same identifier will be ignored.
+     *
      * @var string
      */
     public $deduplication_id;
 
     /**
-     * @var array
+     * Meta data about this event.
+     *
+     * @var \TestMonitor\Custify\Resources\MetaData
      */
     public $metadata;
 
@@ -50,19 +53,15 @@ class Event extends Resource
      */
     public function __construct(array $attributes)
     {
-        $this->name = $attributes['name'] ?? '';
-        $this->created_at = $attributes['created_at'] ?? (new \DateTime())->format('Y-m-d h:i:s');
+        $this->name = $attributes['name'];
+
+        $this->person = $attributes['person'] ?? null;
+        $this->company = $attributes['company'] ?? null;
+
+        $this->created_at = $attributes['created_at'] ?? date('c');
 
         $this->deduplication_id = $attributes['deduplication_id'] ?? '';
 
-        $this->metadata = $attributes['metadata'] ?? [];
-
-        if (array_key_exists('user_id', $attributes)) {
-            $this->user_id = $attributes['user_id'];
-        } elseif (array_key_exists('email', $attributes)) {
-            $this->email = $attributes['email'];
-        } elseif (array_key_exists('company_id', $attributes)) {
-            $this->company_id = $attributes['company_id'];
-        }
+        $this->metadata = $attributes['metadata'] ?? new MetaData();
     }
 }

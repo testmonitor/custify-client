@@ -3,7 +3,6 @@
 namespace TestMonitor\Custify\Actions;
 
 use TestMonitor\Custify\Validator;
-use TestMonitor\Custify\Resources\Person;
 use TestMonitor\Custify\Resources\Company;
 use TestMonitor\Custify\Exceptions\NotFoundException;
 use TestMonitor\Custify\Transforms\TransformsCompanies;
@@ -45,7 +44,7 @@ trait ManagesCompanies
 
         Validator::keysExists($response, ['companies']);
 
-        // Simulate a not found response when the user_id does not exists.
+        // Simulate a not found response when the id does not exists.
         if (empty($response['companies'])) {
             throw new NotFoundException();
         }
@@ -68,7 +67,7 @@ trait ManagesCompanies
 
         Validator::keysExists($response, ['companies']);
 
-        // Simulate a not found response when the user_id does not exists.
+        // Simulate a not found response when the company_id does not exists.
         if (empty($response['companies'])) {
             throw new NotFoundException();
         }
@@ -92,17 +91,16 @@ trait ManagesCompanies
     }
 
     /**
-     * Delete a person.
+     * Delete a company.
      *
      * @param \TestMonitor\Custify\Resources\Company $company
      *
-     * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
      * @return bool
      */
     public function deleteCompany(Company $company)
     {
         $response = $this->delete("company/{$company->id}");
 
-        return is_array($response) && array_key_exists('deleted', $response) && $response['deleted'] === 1;
+        return (bool) ($response['deleted'] ?? false);
     }
 }
