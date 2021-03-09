@@ -13,14 +13,14 @@ trait TransformsEvents
      */
     protected function toCustifyEvent(Event $event): array
     {
-        return [
+        return array_filter([
             'name' => $event->name,
             'created_at' => $event->created_at,
-            'user_id' => $event->user_id,
-            'email' => $event->email,
-            'company_id' => $event->company_id,
+            'email' => $event->person->email ?? null,
+            'user_id' => $event->person->user_id ?? null,
+            'company_id' => $event->company->company_id ?? null,
 
-            'metadata' => $event->metadata ?? [],
-        ];
+            'metadata' => $event->metadata->toObject(),
+        ]);
     }
 }

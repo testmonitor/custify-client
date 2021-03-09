@@ -13,52 +13,16 @@ trait ManagesEvents
     use TransformsEvents;
 
     /**
-     * Create an event.
+     * Insert an event.
      *
      * @param \TestMonitor\Custify\Resources\Event $event
      *
-     * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
+     * @return boolean
      */
-    public function createEvent(Event $event)
+    public function insertEvent(Event $event): bool
     {
-        $this->post('event', ['json' => $this->toCustifyEvent($event)]);
+        $response = $this->post('event', ['json' => $this->toCustifyEvent($event)]);
 
-        return $event;
-    }
-
-    /**
-     * Fire an event.
-     *
-     * @param string $name
-     * @param $resource
-     * @param array $metadata
-     *
-     * @return mixed
-     */
-    public function event(string $name, Resource $resource, array $metadata = [])
-    {
-        $data = [
-            'created_at' => (new \DateTime())->format('Y-m-d h:i:s'),
-            'name' => $name,
-            'metadata' => (object) $metadata,
-        ];
-
-        if ($resource instanceof Company) {
-            $data['company_id'] = $resource->company_id;
-        }
-
-        if ($resource instanceof Person && $resource->user_id) {
-            $data['user_id'] = $resource->user_id;
-        }
-
-        if ($resource instanceof Person && $resource->email) {
-            $data['email'] = $resource->email;
-        }
-
-        $event = new Event($data);
-
-        $this->post('event', ['json' => $this->toCustifyEvent($event)]);
-
-        return $event;
+        return empty(json_decode($response, JSON_FORCE_OBJECT));
     }
 }

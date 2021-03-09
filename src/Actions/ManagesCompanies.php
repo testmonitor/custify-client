@@ -92,17 +92,16 @@ trait ManagesCompanies
     }
 
     /**
-     * Delete a person.
+     * Delete a company.
      *
      * @param \TestMonitor\Custify\Resources\Company $company
      *
-     * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
      * @return bool
      */
     public function deleteCompany(Company $company)
     {
         $response = $this->delete("company/{$company->id}");
 
-        return is_array($response) && array_key_exists('deleted', $response) && $response['deleted'] === 1;
+        return (bool) ($response['deleted'] ?? false);
     }
 }
