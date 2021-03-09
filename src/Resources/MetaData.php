@@ -41,7 +41,7 @@ class MetaData extends Resource
      */
     public function __set($name, $value)
     {
-        $this->attributes[$name] = $value;
+        $this->metadata[$name] = $value;
     }
 
     /**
