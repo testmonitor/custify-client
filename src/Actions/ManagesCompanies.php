@@ -67,7 +67,7 @@ trait ManagesCompanies
 
         Validator::keysExists($response, ['companies']);
 
-        // Simulate a not found response when the user_id does not exists.
+        // Simulate a not found response when the company_id does not exists.
         if (empty($response['companies'])) {
             throw new NotFoundException();
         }
