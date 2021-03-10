@@ -147,6 +147,9 @@ class Client
             $payload
         );
 
+        var_dump($response->getBody()->getContents());
+        var_dump($response->getStatusCode());
+
         if (! in_array($response->getStatusCode(), [200, 201, 202, 203, 204, 206])) {
             return $this->handleRequestError($response);
         }

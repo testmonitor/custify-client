@@ -8,6 +8,7 @@ use TestMonitor\Custify\Client;
 use TestMonitor\Custify\Resources\Event;
 use TestMonitor\Custify\Resources\Person;
 use TestMonitor\Custify\Resources\Company;
+use TestMonitor\Custify\Resources\MetaData;
 
 class EventsTest extends TestCase
 {
@@ -73,6 +74,31 @@ class EventsTest extends TestCase
         $response = $custify->insertEvent(new Event([
             'name' => 'Event',
             'company' => new Company($this->company),
+        ]));
+
+        // Then
+        $this->assertTrue($response);
+    }
+
+    /** @test */
+    public function it_should_send_an_event_for_a_company_and_attach_metadata()
+    {
+        // Given
+        $custify = new Client($this->token);
+
+        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
+
+        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getStatusCode')->andReturn(202);
+        $response->shouldReceive('getBody')->andReturn(json_encode([]));
+
+        $service->shouldReceive('request')->once()->andReturn($response);
+
+        // When
+        $response = $custify->insertEvent(new Event([
+            'name' => 'Event',
+            'company' => new Company($this->company),
+            'metadata' =>  new MetaData(['foo' => 'bar']),
         ]));
 
         // Then
