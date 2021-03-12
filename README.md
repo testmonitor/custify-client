@@ -50,7 +50,7 @@ Next, you can start interacting with Custify.
 Get a list of Custify people:
 
 ```php
-$projects = $custify->people();
+$people = $custify->people();
 ```
 
 Create a new person:
