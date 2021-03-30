@@ -42,7 +42,7 @@ class Company extends Resource
     /**
      * The size of the company.
      *
-     * @var integer
+     * @var int
      */
     public $size;
 
@@ -56,7 +56,7 @@ class Company extends Resource
     /**
      * Churned.
      *
-     * @var boolean
+     * @var bool
      */
     public $churned;
 
