@@ -54,6 +54,27 @@ class Company extends Resource
     public $plan;
 
     /**
+     * Churned.
+     *
+     * @var boolean
+     */
+    public $churned;
+
+    /**
+     * The owner CSM.
+     *
+     * @var string
+     */
+    public $ownersCsm;
+
+    /**
+     * The owner account.
+     *
+     * @var string
+     */
+    public $ownersAccount;
+
+    /**
      * The custom attributes for this person.
      *
      * @var \TestMonitor\Custify\Resources\CustomAttributes
@@ -74,6 +95,9 @@ class Company extends Resource
         $this->industry = $attributes['industry'] ?? null;
         $this->size = $attributes['size'] ?? null;
         $this->plan = $attributes['plan'] ?? null;
+        $this->churned = $attributes['churned'] ?? null;
+        $this->ownersAccount = $attributes['owners_account'] ?? null;
+        $this->ownersCsm = $attributes['owners_csm'] ?? null;
 
         $this->customAttributes = $attributes['custom_attributes'] ?? new CustomAttributes();
     }
