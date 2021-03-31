@@ -37,6 +37,13 @@ trait TransformsCompanies
             'id' => $company['id'],
             'company_id' => $company['company_id'],
             'name' => $company['name'],
+            'website' => $company['website'],
+            'industry' => $company['industry'],
+            'size' => $company['size'],
+            'plan' => $company['plan'],
+            'churned' => $company['churned'],
+            'ownersAccount' => $company['owners_account'],
+            'ownersCsm' => $company['owners_csm'],
 
             'custom_attributes' => new CustomAttributes($company['custom_attributes'] ?? []),
         ]);
@@ -52,6 +59,13 @@ trait TransformsCompanies
         return [
             'company_id' => $company->company_id,
             'name' => $company->name,
+            'website' => $company->website,
+            'industry' => $company->industry,
+            'size' => $company->size,
+            'plan' => $company->plan,
+            'churned' => $company->churned,
+            'owners_account' => $company->ownersAccount,
+            'owners_csm' => $company->ownersCsm,
 
             'custom_attributes' => $company->customAttributes->toArray(),
         ];

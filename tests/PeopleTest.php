@@ -6,6 +6,7 @@ use Mockery;
 use PHPUnit\Framework\TestCase;
 use TestMonitor\Custify\Client;
 use TestMonitor\Custify\Resources\Person;
+use TestMonitor\Custify\Resources\Company;
 use TestMonitor\Custify\Exceptions\Exception;
 use TestMonitor\Custify\Resources\CustomAttributes;
 use TestMonitor\Custify\Exceptions\NotFoundException;
@@ -19,12 +20,15 @@ class PeopleTest extends TestCase
 
     protected $person;
 
+    protected $company;
+
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->token = '12345';
         $this->person = ['id' => '1', 'user_id' => 'abcde', 'email' => 'email@server.com'];
+        $this->company = ['id' => '1', 'company_id' => 'abcde', 'name' => 'Company'];
     }
 
     public function tearDown(): void
@@ -193,6 +197,33 @@ class PeopleTest extends TestCase
     }
 
     /** @test */
+    public function it_should_return_a_person_and_the_attached_companies()
+    {
+        // Given
+        $custify = new Client($this->token);
+
+        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
+
+        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getStatusCode')->andReturn(200);
+        $response->shouldReceive('getBody')->andReturn(json_encode(array_merge(
+            $this->person,
+            ['companies' => ['1', '2']]
+        )));
+
+        $service->shouldReceive('request')->once()->andReturn($response);
+
+        // When
+        $person = $custify->person('12345');
+
+        // Then
+        $this->assertInstanceOf(Person::class, $person);
+        $this->assertEquals($this->person['id'], $person->id);
+        $this->assertIsArray($person->companies);
+        $this->assertEquals('1', $person->companies[0]->id);
+    }
+
+    /** @test */
     public function it_should_not_return_a_person_when_the_id_doesnt_exists()
     {
         // Given
@@ -320,7 +351,38 @@ class PeopleTest extends TestCase
         $this->assertEquals($this->person['id'], $person->id);
     }
 
-    public function it_should_update_custom_atributes_for_a_person()
+    /** @test */
+    public function it_should_add_a_person_to_a_company()
+    {
+        // Given
+        $custify = new Client($this->token);
+
+        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
+
+        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getStatusCode')->andReturn(201);
+        $response->shouldReceive('getBody')->andReturn(json_encode(array_merge(
+            $this->person,
+            ['companies' => ['1']]
+        )));
+
+        $service->shouldReceive('request')->once()->andReturn($response);
+
+        // When
+        $person = $custify->createOrUpdatePerson(new Person([
+            'user_id' => $this->person['user_id'],
+            'email' => $this->person['email'],
+            'companies' => [new Company($this->company)],
+        ]));
+
+        // Then
+        $this->assertInstanceOf(Person::class, $person);
+        $this->assertEquals($this->person['id'], $person->id);
+        $this->assertIsArray($person->companies);
+        $this->assertEquals('1', $person->companies[0]->id);
+    }
+
+    public function it_should_update_custom_attributes_for_a_person()
     {
         // Given
         $custify = new Client($this->token);

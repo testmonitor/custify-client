@@ -24,7 +24,18 @@ class CompaniesTest extends TestCase
         parent::setUp();
 
         $this->token = '12345';
-        $this->company = ['id' => '1', 'company_id' => 'abcde', 'name' => 'Company'];
+        $this->company = [
+            'id' => '1',
+            'company_id' => 'abcde',
+            'name' => 'Company',
+            'website' => null,
+            'size' => null,
+            'industry' => null,
+            'plan' => null,
+            'churned' => null,
+            'owners_account' => null,
+            'owners_csm' => null,
+        ];
     }
 
     public function tearDown(): void
