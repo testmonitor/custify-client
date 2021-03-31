@@ -54,21 +54,21 @@ class Company extends Resource
     public $plan;
 
     /**
-     * Churned.
+     * The churn state of the company.
      *
      * @var bool
      */
     public $churned;
 
     /**
-     * The owner CSM.
+     * The email address of the Customer Success Manager.
      *
      * @var string
      */
     public $ownersCsm;
 
     /**
-     * The owner account.
+     * The email address of the Account manager.
      *
      * @var string
      */
