@@ -91,13 +91,13 @@ class Company extends Resource
         $this->id = $attributes['id'] ?? '';
         $this->company_id = $attributes['company_id'] ?? '';
         $this->name = $attributes['name'] ?? '';
-        $this->website = $attributes['website'] ?? null;
-        $this->industry = $attributes['industry'] ?? null;
-        $this->size = $attributes['size'] ?? null;
-        $this->plan = $attributes['plan'] ?? null;
-        $this->churned = $attributes['churned'] ?? null;
-        $this->ownersAccount = $attributes['owners_account'] ?? null;
-        $this->ownersCsm = $attributes['owners_csm'] ?? null;
+        $this->website = $attributes['website'] ?? '';
+        $this->industry = $attributes['industry'] ?? '';
+        $this->size = $attributes['size'] ?? '';
+        $this->plan = $attributes['plan'] ?? '';
+        $this->churned = $attributes['churned'] ?? '';
+        $this->ownersAccount = $attributes['owners_account'] ?? '';
+        $this->ownersCsm = $attributes['owners_csm'] ?? '';
 
         $this->customAttributes = $attributes['custom_attributes'] ?? new CustomAttributes();
     }
