@@ -85,7 +85,7 @@ trait ManagesCompanies
      */
     public function createOrUpdateCompany(Company $company): Company
     {
-        $response = $this->post('company', ['json' => array_filter($this->toCustifyCompany($company))]);
+        $response = $this->post('company', ['json' => $this->toCustifyCompany($company)]);
 
         return $this->fromCustifyCompany($response);
     }
