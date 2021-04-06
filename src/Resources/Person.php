@@ -33,28 +33,28 @@ class Person extends Resource
     public $name;
 
     /**
-     * The phonenumber of the person.
+     * The person's phone number.
      *
      * @var string
      */
     public $phone;
 
     /**
-     * The signed up date of the person.
+     * The person's signup date or date the contract started.
      *
      * @var string
      */
     public $signedUpAt;
 
     /**
-     * Unsubscribed from emails.
+     * The person's unsubscribed status from emails.
      *
      * @var bool
      */
     public $unsubscribedFromEmails;
 
     /**
-     * Unsubscribed from calls.
+     * The person's unsubscribed status from calls
      *
      * @var bool
      */
