@@ -117,4 +117,14 @@ class ValidatorTest extends TestCase
         // When
         Validator::keysExists(['id' => 1], ['id', 'description']);
     }
+
+    /** @test */
+    public function it_should_retrieve_data_from_invalid_data_exception()
+    {
+        // Given
+        $exception = new InvalidDataException(['hello' => 'world']);
+
+        // When
+        $this->assertEquals(['hello' => 'world'], $exception->data());
+    }
 }

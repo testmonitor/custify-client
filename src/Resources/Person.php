@@ -33,6 +33,34 @@ class Person extends Resource
     public $name;
 
     /**
+     * The person's phone number.
+     *
+     * @var string
+     */
+    public $phone;
+
+    /**
+     * The person's signup date or date the contract started.
+     *
+     * @var string
+     */
+    public $signedUpAt;
+
+    /**
+     * The person's unsubscribed status from emails.
+     *
+     * @var bool
+     */
+    public $unsubscribedFromEmails;
+
+    /**
+     * The person's unsubscribed status from calls.
+     *
+     * @var bool
+     */
+    public $unsubscribedFromCalls;
+
+    /**
      * The companies related to this person.
      *
      * @var array
@@ -57,6 +85,11 @@ class Person extends Resource
         $this->user_id = $attributes['user_id'] ?? '';
         $this->email = $attributes['email'];
         $this->name = $attributes['name'] ?? '';
+        $this->phone = $attributes['phone'] ?? '';
+        $this->signedUpAt = $attributes['signed_up_at'] ?? '';
+
+        $this->unsubscribedFromEmails = $attributes['unsubscribed_from_emails'] ?? false;
+        $this->unsubscribedFromCalls = $attributes['unsubscribed_from_calls'] ?? false;
 
         $this->customAttributes = $attributes['custom_attributes'] ?? new CustomAttributes();
 
