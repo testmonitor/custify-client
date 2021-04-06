@@ -54,7 +54,7 @@ class Person extends Resource
     public $unsubscribedFromEmails;
 
     /**
-     * The person's unsubscribed status from calls
+     * The person's unsubscribed status from calls.
      *
      * @var bool
      */
