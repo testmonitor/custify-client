@@ -105,7 +105,7 @@ class CompaniesTest extends TestCase
     }
 
     /** @test */
-    public function it_should_throw_a_notfound_exception_when_client_receives_an_empty_company_while_getting_a_company_by_id()
+    public function it_should_throw_a_notfound_exception_when_getting_a_company_that_doesnt_exists()
     {
         // Given
         $custify = new Client($this->token);
