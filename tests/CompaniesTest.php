@@ -105,6 +105,24 @@ class CompaniesTest extends TestCase
     }
 
     /** @test */
+    public function it_should_throw_a_notfound_exception_when_getting_a_company_that_doesnt_exists()
+    {
+        // Given
+        $custify = new Client($this->token);
+
+        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
+
+        $service->shouldReceive('request')->once()->andReturn($response = Mockery::mock('Psr\Http\Message\ResponseInterface'));
+        $response->shouldReceive('getStatusCode')->andReturn(200);
+        $response->shouldReceive('getBody')->andReturn(json_encode(['companies' => []]));
+
+        $this->expectException(NotFoundException::class);
+
+        // When
+        $custify->company('1');
+    }
+
+    /** @test */
     public function it_should_throw_a_unauthorized_exception_when_client_lacks_authorization_for_getting_a_list_of_companies()
     {
         // Given

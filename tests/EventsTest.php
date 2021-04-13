@@ -131,5 +131,6 @@ class EventsTest extends TestCase
 
         // Then
         $this->assertTrue($response);
+        $this->assertEquals('bar', $metadata->foo);
     }
 }
