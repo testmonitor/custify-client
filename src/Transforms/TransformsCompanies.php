@@ -37,7 +37,7 @@ trait TransformsCompanies
             'id' => $company['id'],
             'company_id' => $company['company_id'],
             'name' => $company['name'],
-            'signed_up_at' => $company['signed_up_at'],
+            'signed_up_at' => $company['signed_up_at'] ?? '',
             'website' => $company['website'] ?? '',
             'industry' => $company['industry'] ?? '',
             'size' => $company['size'] ?? '',
