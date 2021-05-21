@@ -30,6 +30,7 @@ class CompaniesTest extends TestCase
             'name' => 'Company',
             'website' => null,
             'size' => null,
+            'signed_up_at' => null,
             'industry' => null,
             'plan' => null,
             'churned' => null,

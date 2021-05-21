@@ -39,6 +39,10 @@ trait TransformsPeople
             'user_id' => $person['user_id'],
             'email' => $person['email'],
             'name' => $person['name'] ?? '',
+            'signed_up_at' => $person['signed_up_at'] ?? '',
+            'phone' => $person['phone'] ?? '',
+            'unsubscribed_from_emails' => $person['unsubscribed_from_emails'] ?? false,
+            'unsubscribed_from_calls' => $person['unsubscribed_from_calls'] ?? false,
 
             'custom_attributes' => new CustomAttributes($person['custom_attributes'] ?? []),
 
@@ -55,16 +59,20 @@ trait TransformsPeople
      */
     protected function toCustifyPerson(Person $person): array
     {
-        return [
+        return array_filter([
             'user_id' => $person->user_id,
             'email' => $person->email,
             'name' => $person->name,
+            'signed_up_at' => $person->signedUpAt,
+            'phone' => $person->phone,
+            'unsubscribed_from_emails' => $person->unsubscribedFromEmails,
+            'unsubscribed_from_calls' => $person->unsubscribedFromCalls,
 
             'custom_attributes' => $person->customAttributes->toArray(),
 
             'companies' => array_map(function (Company $company) {
                 return ['company_id' => $company->company_id];
             }, $person->companies ?? []),
-        ];
+        ]);
     }
 }

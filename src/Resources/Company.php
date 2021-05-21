@@ -26,6 +26,13 @@ class Company extends Resource
     public $name;
 
     /**
+     * The company signup date or date the contract started.
+     *
+     * @var string
+     */
+    public $signedUpAt;
+
+    /**
      * The website of the company.
      *
      * @var string
@@ -98,6 +105,7 @@ class Company extends Resource
         $this->churned = $attributes['churned'] ?? '';
         $this->ownersAccount = $attributes['owners_account'] ?? '';
         $this->ownersCsm = $attributes['owners_csm'] ?? '';
+        $this->signedUpAt = $attributes['signed_up_at'] ?? '';
 
         $this->customAttributes = $attributes['custom_attributes'] ?? new CustomAttributes();
     }
