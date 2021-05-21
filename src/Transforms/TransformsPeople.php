@@ -59,7 +59,7 @@ trait TransformsPeople
      */
     protected function toCustifyPerson(Person $person): array
     {
-        return [
+        return array_filter([
             'user_id' => $person->user_id,
             'email' => $person->email,
             'name' => $person->name,
@@ -73,6 +73,6 @@ trait TransformsPeople
             'companies' => array_map(function (Company $company) {
                 return ['company_id' => $company->company_id];
             }, $person->companies ?? []),
-        ];
+        ]);
     }
 }
