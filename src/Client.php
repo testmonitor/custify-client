@@ -55,6 +55,7 @@ class Client
         return $this->client ?? new \GuzzleHttp\Client([
             'base_uri' => $this->baseUrl . '/',
             'http_errors' => false,
+            'timeout' => 10,
             'headers' => [
                 'Authorization' => 'Bearer ' . $this->token,
                 'Accept' => 'application/json',
