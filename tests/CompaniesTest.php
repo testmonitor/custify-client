@@ -299,7 +299,7 @@ class CompaniesTest extends TestCase
 
         // When
         $company = $custify->createOrUpdateCompany(new Company([
-            'user_id' => $this->company['company_id'],
+            'company_id' => $this->company['company_id'],
             'name' => $this->company['name'],
         ]));
 
@@ -326,7 +326,7 @@ class CompaniesTest extends TestCase
         $service->shouldReceive('request')->once()->andReturn($response);
 
         $company = new Company([
-            'user_id' => $this->company['company_id'],
+            'company_id' => $this->company['company_id'],
             'name' => $this->company['name'],
         ]);
 
@@ -358,7 +358,7 @@ class CompaniesTest extends TestCase
         $service->shouldReceive('request')->once()->andReturn($response);
 
         $company = new Company([
-            'user_id' => $this->company['company_id'],
+            'company_id' => $this->company['company_id'],
             'name' => $this->company['name'],
         ]);
 
@@ -392,12 +392,36 @@ class CompaniesTest extends TestCase
         $service->shouldReceive('request')->once()->andReturn($response);
 
         $company = new Company([
-            'user_id' => $this->company['company_id'],
+            'id' => $this->company['id'],
             'name' => $this->company['name'],
         ]);
 
         // When
         $response = $custify->deleteCompany($company);
+
+        // Then
+        $this->assertIsBool($response);
+        $this->assertTrue($response);
+    }
+
+    /** @test */
+    public function it_should_delete_a_company_using_its_company_id()
+    {
+        // Given
+        $custify = new Client($this->token);
+
+        $custify->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
+
+        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getStatusCode')->andReturn(201);
+        $response->shouldReceive('getBody')->andReturn(json_encode([
+            'deleted' => 1,
+        ]));
+
+        $service->shouldReceive('request')->once()->andReturn($response);
+
+        // When
+        $response = $custify->deleteCompanyByCompanyId($this->company['company_id']);
 
         // Then
         $this->assertIsBool($response);

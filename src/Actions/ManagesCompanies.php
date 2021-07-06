@@ -103,4 +103,18 @@ trait ManagesCompanies
 
         return (bool) ($response['deleted'] ?? false);
     }
+
+    /**
+     * Delete a company by its company id.
+     *
+     * @param string $companyId
+     *
+     * @return bool
+     */
+    public function deleteCompanyByCompanyId(string $companyId)
+    {
+        $response = $this->delete("company?company_id={$companyId}");
+
+        return (bool) ($response['deleted'] ?? false);
+    }
 }
