@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.3.0] - 2021-07-07
+
+### Added
+- Added delete company by company id ([#14](https://github.com/testmonitor/custify-client/pull/14))
+
+### Updated
+- Added timeout parameter ([#13](https://github.com/testmonitor/custify-client/pull/13))
+
 ## [1.2.0] - 2021-05-21
 
 ### Updated
