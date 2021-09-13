@@ -25,7 +25,6 @@ class CustomAttributes extends Resource
      * Gets a custom attribute.
      *
      * @param $name
-     *
      * @return mixed|null
      */
     public function __get($name)

@@ -18,6 +18,7 @@ trait ManagesPeople
      * @param int $limit
      *
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
+     *
      * @return \TestMonitor\Custify\Resources\Person[]
      */
     public function people($page = 1, $limit = 10): array
@@ -35,6 +36,7 @@ trait ManagesPeople
      * @param string $id
      *
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
+     *
      * @return \TestMonitor\Custify\Resources\Person
      */
     public function person(string $id): Person
@@ -51,6 +53,7 @@ trait ManagesPeople
      *
      * @throws \TestMonitor\Custify\Exceptions\NotFoundException
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
+     *
      * @return \TestMonitor\Custify\Resources\Person
      */
     public function personByUserId(string $userId): Person
@@ -74,6 +77,7 @@ trait ManagesPeople
      *
      * @throws \TestMonitor\Custify\Exceptions\NotFoundException
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
+     *
      * @return \TestMonitor\Custify\Resources\Person
      */
     public function personByEmail(string $email): Person
@@ -96,6 +100,7 @@ trait ManagesPeople
      * @param \TestMonitor\Custify\Resources\Person $person
      *
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
+     *
      * @return \TestMonitor\Custify\Resources\Person
      */
     public function createOrUpdatePerson(Person $person): Person
@@ -109,7 +114,6 @@ trait ManagesPeople
      * Delete a person.
      *
      * @param \TestMonitor\Custify\Resources\Person $person
-     *
      * @return bool
      */
     public function deletePerson(Person $person)

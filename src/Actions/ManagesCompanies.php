@@ -18,6 +18,7 @@ trait ManagesCompanies
      * @param int $limit
      *
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
+     *
      * @return \TestMonitor\Custify\Resources\Company[]
      */
     public function companies($page = 1, $limit = 10): array
@@ -36,6 +37,7 @@ trait ManagesCompanies
      *
      * @throws \TestMonitor\Custify\Exceptions\NotFoundException
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
+     *
      * @return \TestMonitor\Custify\Resources\Company
      */
     public function company(string $id): Company
@@ -59,6 +61,7 @@ trait ManagesCompanies
      *
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
      * @throws \TestMonitor\Custify\Exceptions\NotFoundException
+     *
      * @return \TestMonitor\Custify\Resources\Company
      */
     public function companyByCompanyId(string $companyId): Company
@@ -81,6 +84,7 @@ trait ManagesCompanies
      * @param \TestMonitor\Custify\Resources\Company $company
      *
      *@throws \TestMonitor\Custify\Exceptions\InvalidDataException
+     *
      * @return \TestMonitor\Custify\Resources\Company
      */
     public function createOrUpdateCompany(Company $company): Company
@@ -94,7 +98,6 @@ trait ManagesCompanies
      * Delete a company.
      *
      * @param \TestMonitor\Custify\Resources\Company $company
-     *
      * @return bool
      */
     public function deleteCompany(Company $company)
@@ -108,7 +111,6 @@ trait ManagesCompanies
      * Delete a company by its company id.
      *
      * @param string $companyId
-     *
      * @return bool
      */
     public function deleteCompanyByCompanyId(string $companyId)

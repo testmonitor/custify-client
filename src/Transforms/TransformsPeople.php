@@ -13,6 +13,7 @@ trait TransformsPeople
      * @param array $people
      *
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
+     *
      * @return \TestMonitor\Custify\Resources\Person[]
      */
     protected function fromCustifyPeople($people): array
@@ -28,6 +29,7 @@ trait TransformsPeople
      * @param array $person
      *
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
+     *
      * @return \TestMonitor\Custify\Resources\Person
      */
     protected function fromCustifyPerson($person): Person
@@ -54,7 +56,6 @@ trait TransformsPeople
 
     /**
      * @param Person $person
-     *
      * @return array
      */
     protected function toCustifyPerson(Person $person): array

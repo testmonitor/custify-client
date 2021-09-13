@@ -44,6 +44,7 @@ class Client
      * Returns an Guzzle client instance.
      *
      * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
+     *
      * @return \GuzzleHttp\Client
      */
     protected function client()
@@ -76,13 +77,14 @@ class Client
      * Make a GET request to Custify servers and return the response.
      *
      * @param string $uri
-     *
      * @param array $payload
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TestMonitor\Custify\Exceptions\FailedActionException
      * @throws \TestMonitor\Custify\Exceptions\NotFoundException
      * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
      * @throws \TestMonitor\Custify\Exceptions\ValidationException
+     *
      * @return mixed
      */
     protected function get($uri, array $payload = [])
@@ -101,6 +103,7 @@ class Client
      * @throws \TestMonitor\Custify\Exceptions\NotFoundException
      * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
      * @throws \TestMonitor\Custify\Exceptions\ValidationException
+     *
      * @return mixed
      */
     protected function post($uri, array $payload = [])
@@ -119,6 +122,7 @@ class Client
      * @throws \TestMonitor\Custify\Exceptions\NotFoundException
      * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
      * @throws \TestMonitor\Custify\Exceptions\ValidationException
+     *
      * @return mixed
      */
     protected function delete($uri, array $payload = [])
@@ -138,6 +142,7 @@ class Client
      * @throws \TestMonitor\Custify\Exceptions\NotFoundException
      * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
      * @throws \TestMonitor\Custify\Exceptions\ValidationException
+     *
      * @return mixed
      */
     protected function request($verb, $uri, array $payload = [])
@@ -164,6 +169,7 @@ class Client
      * @throws \TestMonitor\Custify\Exceptions\NotFoundException
      * @throws \TestMonitor\Custify\Exceptions\FailedActionException
      * @throws \Exception
+     *
      * @return void
      */
     protected function handleRequestError(ResponseInterface $response)
