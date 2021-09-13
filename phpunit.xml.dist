@@ -11,7 +11,7 @@
     </report>
   </coverage>
   <testsuites>
-    <testsuite name="TestMonitor Asana Client Test Suite">
+    <testsuite name="TestMonitor Custify Client Test Suite">
       <directory>tests</directory>
     </testsuite>
   </testsuites>
