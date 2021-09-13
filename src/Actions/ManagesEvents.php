@@ -13,7 +13,6 @@ trait ManagesEvents
      * Insert an event.
      *
      * @param \TestMonitor\Custify\Resources\Event $event
-     *
      * @return bool
      */
     public function insertEvent(Event $event): bool

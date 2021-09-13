@@ -12,6 +12,7 @@ trait TransformsCompanies
      * @param array $companies
      *
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
+     *
      * @return \TestMonitor\Custify\Resources\Company[]
      */
     protected function fromCustifyCompanies($companies): array
@@ -27,6 +28,7 @@ trait TransformsCompanies
      * @param array $company
      *
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
+     *
      * @return \TestMonitor\Custify\Resources\Company
      */
     protected function fromCustifyCompany($company): Company
@@ -52,7 +54,6 @@ trait TransformsCompanies
 
     /**
      * @param Company $company
-     *
      * @return array
      */
     protected function toCustifyCompany(Company $company): array

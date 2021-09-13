@@ -25,7 +25,6 @@ class MetaData extends Resource
      * Gets a meta data item.
      *
      * @param $name
-     *
      * @return mixed|null
      */
     public function __get($name)

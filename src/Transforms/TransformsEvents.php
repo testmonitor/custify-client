@@ -8,7 +8,6 @@ trait TransformsEvents
 {
     /**
      * @param Event $event
-     *
      * @return array
      */
     protected function toCustifyEvent(Event $event): array
