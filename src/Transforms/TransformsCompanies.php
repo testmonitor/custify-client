@@ -71,6 +71,6 @@ trait TransformsCompanies
             'owners_csm' => $company->ownersCsm,
 
             'custom_attributes' => $company->customAttributes->toArray(),
-        ]);
+        ], fn ($value) => is_bool($value) || ! empty($value));
     }
 }

@@ -74,6 +74,6 @@ trait TransformsPeople
             'companies' => array_map(function (Company $company) {
                 return ['company_id' => $company->company_id];
             }, $person->companies ?? []),
-        ]);
+        ], fn ($value) => is_bool($value) || ! empty($value));
     }
 }

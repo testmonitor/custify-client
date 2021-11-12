@@ -18,7 +18,7 @@ class CustomAttributes extends Resource
      */
     public function __construct($attributes = [])
     {
-        $this->attributes = array_filter($attributes, fn ($value) => ! is_null($value));
+        $this->attributes = array_filter($attributes, fn ($value) => is_bool($value) || ! empty($value));
     }
 
     /**
