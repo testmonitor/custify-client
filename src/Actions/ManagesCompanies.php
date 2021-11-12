@@ -12,13 +12,17 @@ trait ManagesCompanies
     use TransformsCompanies;
 
     /**
-     * Get a list of of companies.
+     * Get a list of companies.
      *
      * @param int $page
      * @param int $limit
      *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \TestMonitor\Custify\Exceptions\FailedActionException
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
-     *
+     * @throws \TestMonitor\Custify\Exceptions\NotFoundException
+     * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
+     * @throws \TestMonitor\Custify\Exceptions\ValidationException
      * @return \TestMonitor\Custify\Resources\Company[]
      */
     public function companies($page = 1, $limit = 10): array
@@ -35,9 +39,12 @@ trait ManagesCompanies
      *
      * @param string $id
      *
-     * @throws \TestMonitor\Custify\Exceptions\NotFoundException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \TestMonitor\Custify\Exceptions\FailedActionException
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
-     *
+     * @throws \TestMonitor\Custify\Exceptions\NotFoundException
+     * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
+     * @throws \TestMonitor\Custify\Exceptions\ValidationException
      * @return \TestMonitor\Custify\Resources\Company
      */
     public function company(string $id): Company
@@ -59,9 +66,12 @@ trait ManagesCompanies
      *
      * @param string $companyId
      *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \TestMonitor\Custify\Exceptions\FailedActionException
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
      * @throws \TestMonitor\Custify\Exceptions\NotFoundException
-     *
+     * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
+     * @throws \TestMonitor\Custify\Exceptions\ValidationException
      * @return \TestMonitor\Custify\Resources\Company
      */
     public function companyByCompanyId(string $companyId): Company
@@ -83,8 +93,12 @@ trait ManagesCompanies
      *
      * @param \TestMonitor\Custify\Resources\Company $company
      *
-     *@throws \TestMonitor\Custify\Exceptions\InvalidDataException
-     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \TestMonitor\Custify\Exceptions\FailedActionException
+     * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
+     * @throws \TestMonitor\Custify\Exceptions\NotFoundException
+     * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
+     * @throws \TestMonitor\Custify\Exceptions\ValidationException
      * @return \TestMonitor\Custify\Resources\Company
      */
     public function createOrUpdateCompany(Company $company): Company
@@ -98,6 +112,12 @@ trait ManagesCompanies
      * Delete a company.
      *
      * @param \TestMonitor\Custify\Resources\Company $company
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \TestMonitor\Custify\Exceptions\FailedActionException
+     * @throws \TestMonitor\Custify\Exceptions\NotFoundException
+     * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
+     * @throws \TestMonitor\Custify\Exceptions\ValidationException
      * @return bool
      */
     public function deleteCompany(Company $company)
@@ -111,6 +131,12 @@ trait ManagesCompanies
      * Delete a company by its company id.
      *
      * @param string $companyId
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \TestMonitor\Custify\Exceptions\FailedActionException
+     * @throws \TestMonitor\Custify\Exceptions\NotFoundException
+     * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
+     * @throws \TestMonitor\Custify\Exceptions\ValidationException
      * @return bool
      */
     public function deleteCompanyByCompanyId(string $companyId)

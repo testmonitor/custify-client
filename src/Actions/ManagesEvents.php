@@ -13,6 +13,12 @@ trait ManagesEvents
      * Insert an event.
      *
      * @param \TestMonitor\Custify\Resources\Event $event
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \TestMonitor\Custify\Exceptions\FailedActionException
+     * @throws \TestMonitor\Custify\Exceptions\NotFoundException
+     * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
+     * @throws \TestMonitor\Custify\Exceptions\ValidationException
      * @return bool
      */
     public function insertEvent(Event $event): bool
