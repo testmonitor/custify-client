@@ -23,6 +23,7 @@ trait ManagesCompanies
      * @throws \TestMonitor\Custify\Exceptions\NotFoundException
      * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
      * @throws \TestMonitor\Custify\Exceptions\ValidationException
+     *
      * @return \TestMonitor\Custify\Resources\Company[]
      */
     public function companies($page = 1, $limit = 10): array
@@ -45,6 +46,7 @@ trait ManagesCompanies
      * @throws \TestMonitor\Custify\Exceptions\NotFoundException
      * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
      * @throws \TestMonitor\Custify\Exceptions\ValidationException
+     *
      * @return \TestMonitor\Custify\Resources\Company
      */
     public function company(string $id): Company
@@ -72,6 +74,7 @@ trait ManagesCompanies
      * @throws \TestMonitor\Custify\Exceptions\NotFoundException
      * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
      * @throws \TestMonitor\Custify\Exceptions\ValidationException
+     *
      * @return \TestMonitor\Custify\Resources\Company
      */
     public function companyByCompanyId(string $companyId): Company
@@ -99,6 +102,7 @@ trait ManagesCompanies
      * @throws \TestMonitor\Custify\Exceptions\NotFoundException
      * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
      * @throws \TestMonitor\Custify\Exceptions\ValidationException
+     *
      * @return \TestMonitor\Custify\Resources\Company
      */
     public function createOrUpdateCompany(Company $company): Company
@@ -118,6 +122,7 @@ trait ManagesCompanies
      * @throws \TestMonitor\Custify\Exceptions\NotFoundException
      * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
      * @throws \TestMonitor\Custify\Exceptions\ValidationException
+     *
      * @return bool
      */
     public function deleteCompany(Company $company)
@@ -137,6 +142,7 @@ trait ManagesCompanies
      * @throws \TestMonitor\Custify\Exceptions\NotFoundException
      * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
      * @throws \TestMonitor\Custify\Exceptions\ValidationException
+     *
      * @return bool
      */
     public function deleteCompanyByCompanyId(string $companyId)

@@ -142,6 +142,7 @@ class Client
      * @throws \TestMonitor\Custify\Exceptions\NotFoundException
      * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
      * @throws \TestMonitor\Custify\Exceptions\ValidationException
+     *
      * @return mixed
      */
     protected function request($verb, $uri, array $payload = [])

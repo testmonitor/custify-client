@@ -19,6 +19,7 @@ trait ManagesEvents
      * @throws \TestMonitor\Custify\Exceptions\NotFoundException
      * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
      * @throws \TestMonitor\Custify\Exceptions\ValidationException
+     *
      * @return bool
      */
     public function insertEvent(Event $event): bool
