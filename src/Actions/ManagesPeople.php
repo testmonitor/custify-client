@@ -12,12 +12,17 @@ trait ManagesPeople
     use TransformsPeople;
 
     /**
-     * Get a list of of people.
+     * Get a list of people.
      *
      * @param int $page
      * @param int $limit
      *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \TestMonitor\Custify\Exceptions\FailedActionException
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
+     * @throws \TestMonitor\Custify\Exceptions\NotFoundException
+     * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
+     * @throws \TestMonitor\Custify\Exceptions\ValidationException
      *
      * @return \TestMonitor\Custify\Resources\Person[]
      */
@@ -35,7 +40,12 @@ trait ManagesPeople
      *
      * @param string $id
      *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \TestMonitor\Custify\Exceptions\FailedActionException
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
+     * @throws \TestMonitor\Custify\Exceptions\NotFoundException
+     * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
+     * @throws \TestMonitor\Custify\Exceptions\ValidationException
      *
      * @return \TestMonitor\Custify\Resources\Person
      */
@@ -51,8 +61,12 @@ trait ManagesPeople
      *
      * @param string $userId
      *
-     * @throws \TestMonitor\Custify\Exceptions\NotFoundException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \TestMonitor\Custify\Exceptions\FailedActionException
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
+     * @throws \TestMonitor\Custify\Exceptions\NotFoundException
+     * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
+     * @throws \TestMonitor\Custify\Exceptions\ValidationException
      *
      * @return \TestMonitor\Custify\Resources\Person
      */
@@ -75,8 +89,12 @@ trait ManagesPeople
      *
      * @param string $email
      *
-     * @throws \TestMonitor\Custify\Exceptions\NotFoundException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \TestMonitor\Custify\Exceptions\FailedActionException
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
+     * @throws \TestMonitor\Custify\Exceptions\NotFoundException
+     * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
+     * @throws \TestMonitor\Custify\Exceptions\ValidationException
      *
      * @return \TestMonitor\Custify\Resources\Person
      */
@@ -99,7 +117,12 @@ trait ManagesPeople
      *
      * @param \TestMonitor\Custify\Resources\Person $person
      *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \TestMonitor\Custify\Exceptions\FailedActionException
      * @throws \TestMonitor\Custify\Exceptions\InvalidDataException
+     * @throws \TestMonitor\Custify\Exceptions\NotFoundException
+     * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
+     * @throws \TestMonitor\Custify\Exceptions\ValidationException
      *
      * @return \TestMonitor\Custify\Resources\Person
      */
@@ -114,6 +137,13 @@ trait ManagesPeople
      * Delete a person.
      *
      * @param \TestMonitor\Custify\Resources\Person $person
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \TestMonitor\Custify\Exceptions\FailedActionException
+     * @throws \TestMonitor\Custify\Exceptions\NotFoundException
+     * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
+     * @throws \TestMonitor\Custify\Exceptions\ValidationException
+     *
      * @return bool
      */
     public function deletePerson(Person $person)

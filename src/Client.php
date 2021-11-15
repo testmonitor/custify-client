@@ -167,6 +167,7 @@ class Client
      *
      * @throws \TestMonitor\Custify\Exceptions\ValidationException
      * @throws \TestMonitor\Custify\Exceptions\NotFoundException
+     * @throws \TestMonitor\Custify\Exceptions\UnauthorizedException
      * @throws \TestMonitor\Custify\Exceptions\FailedActionException
      * @throws \Exception
      *
