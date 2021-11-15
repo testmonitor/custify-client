@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.0.0] - 2021-11-15
+
+* Drop PHP7.4 support by @stefanius in https://github.com/testmonitor/custify-client/pull/15
+* Fixed boolean filtering by @thijskok in https://github.com/testmonitor/custify-client/pull/17
+* Fixed PHPdocs by @thijskok in https://github.com/testmonitor/custify-client/pull/18
+
 ## [1.3.0] - 2021-07-07
 
 ### Added
