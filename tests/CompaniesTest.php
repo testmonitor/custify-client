@@ -175,7 +175,6 @@ class CompaniesTest extends TestCase
         try {
             $custify->companies();
         } catch (ValidationException $exception) {
-
             // Then
             $this->assertIsArray($exception->errors());
             $this->assertEquals('invalid', $exception->errors()['errors'][0]);

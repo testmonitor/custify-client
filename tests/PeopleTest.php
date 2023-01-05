@@ -149,7 +149,6 @@ class PeopleTest extends TestCase
         try {
             $custify->people();
         } catch (ValidationException $exception) {
-
             // Then
             $this->assertIsArray($exception->errors());
             $this->assertEquals('invalid', $exception->errors()['errors'][0]);
