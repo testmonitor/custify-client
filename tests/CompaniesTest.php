@@ -54,7 +54,7 @@ class CompaniesTest extends TestCase
 
         $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
         $response->shouldReceive('getStatusCode')->andReturn(200);
-        $response->shouldReceive('getBody')->andReturn(json_encode(['companies' => [$this->company]]));
+        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor(json_encode(['companies' => [$this->company]])));
 
         $service->shouldReceive('request')->once()->andReturn($response);
 
@@ -79,7 +79,7 @@ class CompaniesTest extends TestCase
 
         $service->shouldReceive('request')->once()->andReturn($response = Mockery::mock('Psr\Http\Message\ResponseInterface'));
         $response->shouldReceive('getStatusCode')->andReturn(400);
-        $response->shouldReceive('getBody')->andReturnNull();
+        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor(null));
 
         $this->expectException(FailedActionException::class);
 
@@ -115,7 +115,7 @@ class CompaniesTest extends TestCase
 
         $service->shouldReceive('request')->once()->andReturn($response = Mockery::mock('Psr\Http\Message\ResponseInterface'));
         $response->shouldReceive('getStatusCode')->andReturn(200);
-        $response->shouldReceive('getBody')->andReturn(json_encode(['companies' => []]));
+        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor(json_encode(['companies' => []])));
 
         $this->expectException(NotFoundException::class);
 
@@ -151,7 +151,7 @@ class CompaniesTest extends TestCase
 
         $service->shouldReceive('request')->once()->andReturn($response = Mockery::mock('Psr\Http\Message\ResponseInterface'));
         $response->shouldReceive('getStatusCode')->andReturn(422);
-        $response->shouldReceive('getBody')->andReturn(json_encode(['message' => 'invalid']));
+        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor(json_encode(['message' => 'invalid'])));
 
         $this->expectException(ValidationException::class);
 
@@ -169,7 +169,7 @@ class CompaniesTest extends TestCase
 
         $service->shouldReceive('request')->once()->andReturn($response = Mockery::mock('Psr\Http\Message\ResponseInterface'));
         $response->shouldReceive('getStatusCode')->andReturn(422);
-        $response->shouldReceive('getBody')->andReturn(json_encode(['errors' => ['invalid']]));
+        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor(json_encode(['errors' => ['invalid']])));
 
         // When
         try {
@@ -209,7 +209,7 @@ class CompaniesTest extends TestCase
 
         $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
         $response->shouldReceive('getStatusCode')->andReturn(200);
-        $response->shouldReceive('getBody')->andReturn(json_encode(['companies' => [$this->company]]));
+        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor(json_encode(['companies' => [$this->company]])));
 
         $service->shouldReceive('request')->once()->andReturn($response);
 
@@ -250,7 +250,7 @@ class CompaniesTest extends TestCase
 
         $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
         $response->shouldReceive('getStatusCode')->andReturn(200);
-        $response->shouldReceive('getBody')->andReturn(json_encode(['companies' => [$this->company]]));
+        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor(json_encode(['companies' => [$this->company]])));
 
         $service->shouldReceive('request')->once()->andReturn($response);
 
@@ -272,7 +272,7 @@ class CompaniesTest extends TestCase
 
         $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
         $response->shouldReceive('getStatusCode')->andReturn(200);
-        $response->shouldReceive('getBody')->andReturn(json_encode(['companies' => []]));
+        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor(json_encode(['companies' => []])));
 
         $service->shouldReceive('request')->once()->andReturn($response);
 
@@ -292,7 +292,7 @@ class CompaniesTest extends TestCase
 
         $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
         $response->shouldReceive('getStatusCode')->andReturn(201);
-        $response->shouldReceive('getBody')->andReturn(json_encode($this->company));
+        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor(json_encode($this->company)));
 
         $service->shouldReceive('request')->once()->andReturn($response);
 
@@ -317,10 +317,10 @@ class CompaniesTest extends TestCase
 
         $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
         $response->shouldReceive('getStatusCode')->andReturn(201);
-        $response->shouldReceive('getBody')->andReturn(json_encode(array_merge(
+        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor(json_encode(array_merge(
             $this->company,
             ['custom_attributes' => ['krusty' => 'krab']]
-        )));
+        ))));
 
         $service->shouldReceive('request')->once()->andReturn($response);
 
@@ -349,10 +349,10 @@ class CompaniesTest extends TestCase
 
         $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
         $response->shouldReceive('getStatusCode')->andReturn(201);
-        $response->shouldReceive('getBody')->andReturn(json_encode(array_merge(
+        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor(json_encode(array_merge(
             $this->company,
             ['custom_attributes' => ['krusty' => 'krab']]
-        )));
+        ))));
 
         $service->shouldReceive('request')->once()->andReturn($response);
 
@@ -384,9 +384,9 @@ class CompaniesTest extends TestCase
 
         $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
         $response->shouldReceive('getStatusCode')->andReturn(201);
-        $response->shouldReceive('getBody')->andReturn(json_encode([
-            'deleted' => 1,
-        ]));
+        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor(json_encode(
+            ['deleted' => 1]
+        )));
 
         $service->shouldReceive('request')->once()->andReturn($response);
 
@@ -413,9 +413,9 @@ class CompaniesTest extends TestCase
 
         $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
         $response->shouldReceive('getStatusCode')->andReturn(201);
-        $response->shouldReceive('getBody')->andReturn(json_encode([
-            'deleted' => 1,
-        ]));
+        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor(json_encode(
+            ['deleted' => 1]
+        )));
 
         $service->shouldReceive('request')->once()->andReturn($response);
 
