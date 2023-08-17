@@ -42,7 +42,7 @@ class EventsTest extends TestCase
 
         $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
         $response->shouldReceive('getStatusCode')->andReturn(202);
-        $response->shouldReceive('getBody')->andReturn(json_encode([]));
+        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor(json_encode([])));
 
         $service->shouldReceive('request')->once()->andReturn($response);
 
@@ -66,7 +66,7 @@ class EventsTest extends TestCase
 
         $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
         $response->shouldReceive('getStatusCode')->andReturn(202);
-        $response->shouldReceive('getBody')->andReturn(json_encode([]));
+        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor(json_encode([])));
 
         $service->shouldReceive('request')->once()->andReturn($response);
 
@@ -90,7 +90,7 @@ class EventsTest extends TestCase
 
         $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
         $response->shouldReceive('getStatusCode')->andReturn(202);
-        $response->shouldReceive('getBody')->andReturn(json_encode([]));
+        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor(json_encode([])));
 
         $service->shouldReceive('request')->once()->andReturn($response);
 
@@ -115,7 +115,7 @@ class EventsTest extends TestCase
 
         $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
         $response->shouldReceive('getStatusCode')->andReturn(202);
-        $response->shouldReceive('getBody')->andReturn(json_encode([]));
+        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor(json_encode([])));
 
         $service->shouldReceive('request')->once()->andReturn($response);
 
