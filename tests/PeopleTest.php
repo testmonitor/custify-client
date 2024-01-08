@@ -403,7 +403,7 @@ class PeopleTest extends TestCase
         ]);
 
         // When
-        $person->customAttributes = new CustomAttributes(['krusty' =>'krab']);
+        $person->customAttributes = new CustomAttributes(['krusty' => 'krab']);
 
         $response = $custify->createOrUpdatePerson($person);
 

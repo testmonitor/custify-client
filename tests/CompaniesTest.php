@@ -330,7 +330,7 @@ class CompaniesTest extends TestCase
         ]);
 
         // When
-        $company->customAttributes = new CustomAttributes(['krusty' =>'krab']);
+        $company->customAttributes = new CustomAttributes(['krusty' => 'krab']);
 
         $response = $custify->createOrUpdateCompany($company);
 
