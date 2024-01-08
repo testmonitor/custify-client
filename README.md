@@ -2,7 +2,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/testmonitor/custify-client/v/stable)](https://packagist.org/packages/testmonitor/custify-client)
 [![CircleCI](https://img.shields.io/circleci/project/github/testmonitor/custify-client.svg)](https://circleci.com/gh/testmonitor/custify-client)
-[![Travis Build](https://travis-ci.com/testmonitor/custify-client.svg?branch=master)](https://travis-ci.com/testmonitor/custify-client)
+[![Travis Build](https://travis-ci.com/testmonitor/custify-client.svg?branch=master)](https://app.travis-ci.com/github/testmonitor/custify-client)
 [![Code Coverage](https://scrutinizer-ci.com/g/testmonitor/custify-client/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/testmonitor/custify-client/?branch=master)
 [![Code Quality](https://scrutinizer-ci.com/g/testmonitor/custify-client/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/testmonitor/custify-client/?branch=master)
 [![StyleCI](https://styleci.io/repos/342627557/shield)](https://styleci.io/repos/342627557)
