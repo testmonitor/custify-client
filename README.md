@@ -2,10 +2,8 @@
 
 [![Latest Stable Version](https://poser.pugx.org/testmonitor/custify-client/v/stable)](https://packagist.org/packages/testmonitor/custify-client)
 [![CircleCI](https://img.shields.io/circleci/project/github/testmonitor/custify-client.svg)](https://circleci.com/gh/testmonitor/custify-client)
-[![Travis Build](https://travis-ci.com/testmonitor/custify-client.svg?branch=master)](https://app.travis-ci.com/github/testmonitor/custify-client)
-[![Code Coverage](https://scrutinizer-ci.com/g/testmonitor/custify-client/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/testmonitor/custify-client/?branch=master)
-[![Code Quality](https://scrutinizer-ci.com/g/testmonitor/custify-client/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/testmonitor/custify-client/?branch=master)
 [![StyleCI](https://styleci.io/repos/342627557/shield)](https://styleci.io/repos/342627557)
+[![codecov](https://codecov.io/gh/testmonitor/custify-client/graph/badge.svg?token=V3VTFX5EAP)](https://codecov.io/gh/testmonitor/custify-client)
 [![License](https://poser.pugx.org/testmonitor/custify-client/license)](https://packagist.org/packages/testmonitor/custify-client)
 
 This package provides a very basic, convenient, and unified wrapper for [Custify](https://docs.custify.com/).
